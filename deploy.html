@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>내 페이지 인터넷에 올리기</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; padding:40px 20px 80px; font-family:"맑은 고딕","Malgun Gothic",sans-serif;
+         background:#f4f6f8; color:#1c2733; line-height:1.75; }
+  .wrap { max-width:760px; margin:0 auto; background:#fff; border-radius:14px;
+          padding:40px; box-shadow:0 2px 16px rgba(0,0,0,.08); }
+  h1 { margin:0 0 8px; font-size:28px; }
+  .sub { margin:0 0 8px; color:#5b6b7c; }
+  .back { display:inline-block; margin:0 0 28px; color:#2563eb; text-decoration:none; font-size:15px; }
+  .back:hover { text-decoration:underline; }
+  h2 { margin:44px 0 14px; font-size:22px; padding-top:22px; border-top:2px solid #e3e8ed; }
+  h2:first-of-type { border-top:none; padding-top:0; margin-top:32px; }
+  h3 { margin:26px 0 10px; font-size:17px; color:#334155; }
+  pre { background:#1c2733; color:#fff; padding:16px 18px; border-radius:8px;
+        font-size:16px; overflow-x:auto; margin:12px 0;
+        font-family:Consolas,"D2Coding",monospace; line-height:1.6; }
+  pre.out { background:#eef1f4; color:#1c2733; font-size:15px; }
+  code { background:#eef1f4; padding:2px 6px; border-radius:4px;
+         font-family:Consolas,"D2Coding",monospace; font-size:.94em; }
+  pre code { background:none; padding:0; }
+  .tablewrap { overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; margin:14px 0; font-size:15px; }
+  th, td { border:1px solid #e3e8ed; padding:10px 12px; text-align:left; }
+  th { background:#f4f6f8; }
+  .ok { background:#e9f7ef; border-left:4px solid #16a34a; padding:12px 16px;
+        border-radius:6px; margin:14px 0; }
+  .warn { background:#fff6e5; border-left:4px solid #f59e0b; padding:12px 16px;
+          border-radius:6px; margin:14px 0; }
+  .stop { background:#fdecec; border-left:4px solid #dc2626; padding:12px 16px;
+          border-radius:6px; margin:14px 0; }
+  ol, ul { padding-left:24px; margin:10px 0; }
+  li { margin-bottom:8px; }
+  .toc { background:#f8fafc; border:1px solid #e3e8ed; border-radius:10px;
+         padding:18px 24px; margin:0 0 8px; }
+  .toc ol { margin:0; }
+  .toc a { color:#2563eb; text-decoration:none; }
+  .toc a:hover { text-decoration:underline; }
+  .big { font-size:18px; font-weight:700; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>내 페이지 인터넷에 올리기</h1>
+  <p class="sub">어제 만든 추천기를 오늘은 인터넷 주소로 만듭니다.</p>
+  <a class="back" href="./">← 실습 파일 받는 곳으로</a>
+
+  <div class="toc">
+    <ol>
+      <li><a href="#s0">배포가 뭔데?</a></li>
+      <li><a href="#s1">Vercel과 Render, 뭐가 다른가</a></li>
+      <li><a href="#s2">Vercel 계정 만들기</a></li>
+      <li><a href="#s3">드래그 한 번으로 올리기</a></li>
+      <li><a href="#s4">고친 걸 다시 올리려면</a></li>
+      <li><a href="#err">안 될 때</a></li>
+    </ol>
+  </div>
+
+  <div class="ok">
+    <b class="big">오늘 목표는 하나입니다. 내 주소가 생기는 것.</b>
+  </div>
+
+  <h2 id="s0">1. 배포가 뭔데?</h2>
+  <p>지금 내 <code>index.html</code>은 <b>내 컴퓨터 안에만</b> 있습니다. 그래서 나만 볼 수 있습니다.</p>
+  <p>인터넷에 올리면 <b>주소</b>가 생깁니다. 그 주소를 아는 사람은 누구나 열 수 있습니다.
+     폰으로도, 친구 PC로도요.</p>
+  <p>그게 배포입니다. 오늘 하는 건 이것 하나입니다.</p>
+  <div class="warn">
+    서버를 빌리거나 도메인(<code>.com</code> 같은 거)을 사는 건 오늘 하지 않습니다. <b>돈도 안 듭니다.</b>
+  </div>
+
+  <h2 id="s1">2. Vercel과 Render, 뭐가 다른가</h2>
+  <p>둘 다 무료로 올릴 수 있는 서비스입니다. <b>경쟁 관계가 아니라 용도가 다릅니다.</b></p>
+  <div class="tablewrap">
+  <table>
+    <tr><th></th><th>Vercel ← 오늘 쓸 것</th><th>Render</th></tr>
+    <tr><td>뭘 올리나</td><td><b>완성된 웹페이지</b></td><td>계속 돌아야 하는 서버</td></tr>
+    <tr><td>올리는 방법</td><td>드래그 · 터미널 · GitHub</td><td>GitHub 연결만</td></tr>
+    <tr><td>GitHub 계정</td><td><b>없어도 된다</b></td><td>반드시 필요</td></tr>
+    <tr><td>무료로 쓰면</td><td>개인·비상업용만</td><td>15분 쉬면 잠든다</td></tr>
+  </table>
+  </div>
+  <p>우리가 만든 건 <code>index.html</code> 파일 하나입니다. 서버가 필요 없습니다.
+     <b>그래서 Vercel입니다.</b></p>
+  <p>Render는 나중에 로그인 기능이나 데이터베이스를 붙일 때 씁니다. 오늘은 이름만 알아두면 됩니다.</p>
+
+  <h2 id="s2">3. Vercel 계정 만들기</h2>
+  <ol>
+    <li><b>vercel.com</b> 에 들어갑니다.</li>
+    <li><b>Sign Up</b> 을 누릅니다.</li>
+    <li>GitHub 계정이 있으면 <b>Continue with GitHub</b>, 없으면 이메일로 가입합니다.</li>
+  </ol>
+  <h3>알아둘 것</h3>
+  <ul>
+    <li><b>무료입니다.</b> 카드 번호 넣는 곳이 없습니다.</li>
+    <li>약관상 <b>만 16세 이상</b>이어야 합니다.</li>
+    <li>계정과 비밀번호는 다른 사람과 공유하지 않습니다.</li>
+    <li>무료 플랜은 <b>개인·학습용</b>입니다. 돈 버는 서비스에는 쓸 수 없습니다.</li>
+  </ul>
+  <div class="warn">
+    GitHub 계정이 있으면 그걸로 가입하는 게 좋습니다. 나중에 5번 단계가 훨씬 편해집니다.
+  </div>
+
+  <h2 id="s3">4. 드래그 한 번으로 올리기 <span style="color:#16a34a">← 오늘의 핵심</span></h2>
+  <p>준비물은 <b><code>index.html</code>이 들어 있는 내 폴더</b> 하나입니다.</p>
+  <ol>
+    <li>브라우저에서 <b>vercel.com/drop</b> 을 엽니다. (로그인 상태여야 합니다)</li>
+    <li><b>내 폴더를 통째로 끌어다 놓습니다.</b><br>
+        파일 탐색기에서 폴더를 잡고 브라우저 화면 위로 드래그하면 됩니다.
+        폴더 안의 <code>index.html</code>을 Vercel이 알아서 찾습니다.</li>
+    <li>프로젝트 이름을 물어보면 짓습니다. 예: <code>chulsoo-lunch</code><br>
+        <b>이 이름이 주소가 됩니다.</b> 한글은 피하고 영문·숫자로 짓습니다.</li>
+    <li><b>Deploy</b> 를 누릅니다.</li>
+  </ol>
+  <div class="ok">
+    <b>이렇게 나오면 성공</b> — 몇 초 뒤에 주소가 나옵니다.
+    <pre class="out">https://chulsoo-lunch.vercel.app</pre>
+    그 주소를 눌러서 내 페이지가 열리면 끝입니다.
+  </div>
+  <h3>꼭 해보기</h3>
+  <ul>
+    <li><b>폰으로 열어보세요.</b> 주소를 카톡으로 나한테 보내서 눌러보면 됩니다.</li>
+    <li>옆 사람과 주소를 교환해서 서로 열어봅니다.</li>
+  </ul>
+  <div class="ok">여기까지가 오늘의 목표입니다. <b>주소가 나왔으면 성공입니다.</b></div>
+
+  <h2 id="s4">5. 고친 걸 다시 올리려면</h2>
+  <div class="stop">
+    <b>드래그는 할 때마다 새 프로젝트, 새 주소가 생깁니다.</b><br>
+    방금 만든 주소가 갱신되는 게 아닙니다. 계속 고칠 거면 주소가 계속 바뀌어서 불편합니다.
+  </div>
+
+  <h3>방법 A · 터미널에서 올리기</h3>
+  <p>어제 Node.js를 깔았으면 바로 됩니다. 내 폴더에서 터미널을 열고:</p>
+  <pre>npx vercel --prod</pre>
+  <p>처음 실행하면 몇 가지를 물어봅니다. <b>거의 다 Enter만 치면 됩니다.</b></p>
+  <div class="tablewrap">
+  <table>
+    <tr><th>물어보는 것</th><th>답</th></tr>
+    <tr><td><code>Set up and deploy?</code></td><td><b>Y</b></td></tr>
+    <tr><td><code>Which scope?</code></td><td>Enter (내 계정)</td></tr>
+    <tr><td><code>Link to existing project?</code></td><td><b>N</b> (처음이면)</td></tr>
+    <tr><td><code>What's your project's name?</code></td><td>이름 입력</td></tr>
+    <tr><td><code>In which directory is your code located?</code></td><td>Enter (<code>./</code>)</td></tr>
+  </table>
+  </div>
+  <div class="ok">
+    다음부터는 <code>npx vercel --prod</code> 한 줄이면 <b>같은 주소가 갱신됩니다.</b>
+  </div>
+  <div class="warn">
+    터미널 여는 법이 기억 안 나면: 파일 탐색기에서 내 폴더를 연 다음,
+    위쪽 주소 표시줄에 <code>powershell</code> 치고 Enter.
+  </div>
+
+  <h3>방법 B · GitHub에 연결하기</h3>
+  <p>가장 편한 방법입니다. <b>한 번만 연결해두면 그 뒤로는 <code>git push</code> 만으로 자동 배포됩니다.</b></p>
+  <ol>
+    <li>GitHub에 내 저장소를 만듭니다.</li>
+    <li>Vercel 프로젝트에서 <b>Settings → Git</b> 으로 들어갑니다.</li>
+    <li>내 저장소를 연결합니다.</li>
+  </ol>
+  <p>이미 만든 프로젝트에 나중에 붙여도 됩니다. <b>주소는 그대로 유지됩니다.</b></p>
+  <div class="stop">
+    저장소는 <b>자기 개인 GitHub 계정</b>에 만드세요.<br>
+    학교 조직(Organization) 계정의 <b>비공개</b> 저장소는 무료 플랜에서 배포가 안 됩니다.
+    개인 계정이면 비공개여도 문제없습니다.
+  </div>
+
+  <h2 id="err">안 될 때</h2>
+
+  <h3>드래그했는데 아무 일도 안 일어남</h3>
+  <p>로그인이 안 된 상태입니다. vercel.com에서 먼저 로그인하세요.</p>
+
+  <h3>주소는 나왔는데 화면이 하얗게 나옴</h3>
+  <p>폴더 안에 <code>index.html</code>이 있는지 확인하세요. 파일 이름이 정확히
+     <code>index.html</code>이어야 합니다. <code>index.html.txt</code>로 저장돼 있는 경우가 종종 있습니다.</p>
+
+  <h3>페이지는 열리는데 내가 바꾼 게 안 보임</h3>
+  <p><b>옛날 폴더를 올린 겁니다.</b> 내가 수정하고 저장한 그 폴더가 맞는지 확인하세요.
+     브라우저에서 <code>Ctrl + Shift + R</code> 로 강력 새로고침도 해보세요.</p>
+
+  <h3><code>npx vercel</code> 이 안 먹힘</h3>
+  <p>어제 깐 Node.js가 있어야 합니다. 터미널에서 <code>node --version</code> 이 나오는지 먼저 확인하세요.</p>
+
+  <h3>가입할 때 나이 제한에 걸림</h3>
+  <p>Vercel은 만 16세 이상입니다. 걸리면 손을 드세요. 옆 사람 화면으로 같이 보면 됩니다.</p>
+
+  <div class="ok" style="margin-top:36px">
+    <b class="big">오늘 한 것</b>
+    <pre class="out">1. vercel.com 가입                  (무료, 카드 없음)
+2. vercel.com/drop 에 폴더 드래그
+3. Deploy → 주소 생김
+4. 폰으로 열어보기                   ← 여기까지가 목표
+5. (도전) npx vercel --prod 로 갱신
+6. (도전) GitHub 연결해서 자동 배포</pre>
+    주소가 하나 생겼으면 오늘은 성공입니다.
+  </div>
+</div>
+</body>
+</html>
