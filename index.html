@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>첫날 실습 파일 받기</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; padding:40px 20px; font-family:"맑은 고딕","Malgun Gothic",sans-serif;
+         background:#f4f6f8; color:#1c2733; line-height:1.7; }
+  .wrap { max-width:640px; margin:0 auto; background:#fff; border-radius:14px;
+          padding:40px; box-shadow:0 2px 16px rgba(0,0,0,.08); }
+  h1 { margin:0 0 8px; font-size:26px; }
+  .sub { margin:0 0 28px; color:#5b6b7c; }
+  .btn { display:block; text-align:center; background:#2563eb; color:#fff;
+         text-decoration:none; font-size:20px; font-weight:700;
+         padding:20px; border-radius:10px; margin:0 0 8px; }
+  .btn:hover { background:#1d4ed8; }
+  .size { text-align:center; color:#7b8794; font-size:14px; margin:0 0 32px; }
+  ol { padding-left:22px; margin:0; }
+  li { margin-bottom:14px; }
+  .warn { background:#fff6e5; border-left:4px solid #f59e0b;
+          padding:14px 16px; border-radius:6px; margin-top:28px; font-size:15px; }
+  code { background:#eef1f4; padding:2px 6px; border-radius:4px; }
+  pre { background:#1c2733; color:#fff; padding:14px 16px; border-radius:8px;
+        font-size:15px; overflow-x:auto; margin:10px 0; }
+  .step-line { border-top:1px solid #e3e8ed; margin:24px 0 18px; padding-top:18px;
+               color:#5b6b7c; font-size:15px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>첫날 실습: 나만의 랜덤 추천기</h1>
+  <p class="sub">아래 버튼을 눌러 파일을 받은 뒤, 1~6번 순서대로 진행하세요.</p>
+
+  <a class="btn" href="starter.zip" download="01_첫날_랜덤추천기_학생배포용_v2.zip">실습 파일 받기</a>
+  <p class="size">압축파일 · 약 4KB</p>
+
+  <ol>
+    <li><b>압축을 푸세요.</b> 받은 파일에서 마우스 오른쪽 버튼 →
+        <code>압축 풀기</code><br>
+        <b>압축 파일 안에서 바로 열면 수정한 내용이 저장되지 않습니다.</b></li>
+    <li><b>폴더를 [내 문서]로 옮기세요.</b> 다운로드 폴더에 두면 나중에 못 찾습니다.</li>
+    <li><b><code>01_starter</code> 폴더 이름을 바꾸세요.</b> 예) <code>김철수_점심추천기</code></li>
+    <li><b>그 안의 <code>index.html</code>을 두 번 여세요.</b><br>
+        크롬으로 한 번 → 화면 결과 확인<br>
+        VS Code로 한 번 → 코드 수정<br>
+        고치고 저장(<code>Ctrl+S</code>) → 크롬에서 새로고침(<code>F5</code>)</li>
+  </ol>
+
+  <p class="step-line">여기까지는 설치 없이 됩니다. 아래부터는 AI CLI를 씁니다.<br>
+     막히면 <a href="guide.html" style="color:#2563eb;font-weight:700">자세한 설치 가이드</a>를 보세요.</p>
+
+  <ol start="5">
+    <li><b>터미널에서 AI CLI를 켜세요.</b>
+        <code>PowerShell</code>을 열고 내 폴더로 이동합니다.
+        <pre>cd 내이름_주제
+codex</pre>
+        <code>codex</code> 자리에 내가 설치한 도구 이름을 씁니다.
+        Gemini CLI는 <code>gemini</code>, Claude Code는 <code>claude</code>입니다.<br>
+        처음 한 번은 브라우저가 열립니다. 내 계정으로 로그인하세요.</li>
+    <li><b>한 줄만 시켜보세요.</b>
+        <pre>index.html 제목을 내 주제로 바꿔줘</pre>
+        바뀌었으면 크롬에서 새로고침(<code>F5</code>)해서 확인하세요.<br>
+        <b>AI가 파일을 직접 고치니까, 바뀐 화면을 꼭 눈으로 확인하세요.</b></li>
+  </ol>
+
+  <div class="warn">
+    설치가 아직 안 끝났으면 <b>4번까지만 해도 됩니다.</b> 먼저 진행하세요.<br>
+    잘 안 되면 혼자 오래 붙잡지 말고 <b>빨간색으로 표시</b>하거나 손을 드세요.
+  </div>
+</div>
+</body>
+</html>
