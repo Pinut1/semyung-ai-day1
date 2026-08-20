@@ -85,10 +85,35 @@
   <p class="sub">도서 목록 표(<code>books</code>)가 이미 만들어져 있습니다. 왼쪽 미션을 눌러 하나씩 해보세요.</p>
 
   <div id="boot" class="card loading">
-    <div><b>PostgreSQL을 내려받는 중입니다…</b></div>
-    <div style="font-size:14px;margin-top:4px">처음 한 번만 걸립니다. (약 5MB · 다음부터는 바로 열립니다)</div>
-    <div class="bar"><i></i></div>
+    <div><b id="boot-title">PostgreSQL을 내려받는 중입니다…</b></div>
+    <div style="font-size:14px;margin-top:4px" id="boot-sub">처음 한 번만 걸립니다. (약 5MB · 다음부터는 바로 열립니다)</div>
+    <div class="bar" id="boot-bar"><i></i></div>
   </div>
+
+  <script>
+  /* 모듈이 아예 못 뜨는 경우(파일 누락·차단)를 잡아 무한 로딩을 막는다 */
+  window.__pgReady = false;
+  function bootFail(detail) {
+    if (window.__pgReady) return;
+    var b = document.getElementById('boot');
+    if (!b || b.hidden) return;
+    b.innerHTML = '<div class="msg err" style="text-align:left">' +
+      '열지 못했습니다. <b>새로고침(F5)</b>을 한 번 해보고, 그래도 안 되면 선생님을 부르세요.' +
+      (detail ? '<b>' + String(detail).replace(/[&<>]/g, '') + '</b>' : '') + '</div>';
+  }
+  window.addEventListener('error', function (e) {
+    if (e.target && e.target.tagName === 'SCRIPT') bootFail('스크립트를 불러오지 못했습니다');
+    else if (e.message) bootFail(e.message);
+  }, true);
+  window.addEventListener('unhandledrejection', function (e) {
+    bootFail(e.reason && e.reason.message);
+  });
+  setTimeout(function () {
+    var t = document.getElementById('boot-sub');
+    if (!window.__pgReady && t) t.textContent = '아직 받는 중입니다. 인터넷이 느리면 1분까지 걸릴 수 있어요.';
+  }, 15000);
+  setTimeout(function () { bootFail('시간이 너무 오래 걸립니다'); }, 90000);
+  </script>
 
   <div id="app" class="cols" hidden>
     <div class="card">
@@ -249,6 +274,7 @@ async function reset() {
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) { e.preventDefault(); run(); }
   });
 
+  window.__pgReady = true;
   $('boot').hidden = true;
   $('app').hidden = false;
   await run();
